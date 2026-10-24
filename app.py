@@ -61,12 +61,16 @@ salleCours = [
 
 @app.route('/', methods=['GET'])
 
+@app.route('/accueil', methods=['GET'])
+def accueil():
+    return render_template('index.html')
+
 # =====================
 # La partie Type-Salle
 # =====================
 @app.route('/type-salle/show', methods=['GET'])
 def show_type_salle():
-    return render_template('type_salle/show_type_salle.html', etudiants=typeSalle)
+    return render_template('type_salle/show_type_salle.html', typeSalle = typeSalle)
 
 @app.route('/type-salle/add', methods=['GET'])
 def add_type_salle():
@@ -78,7 +82,12 @@ def valid_add_type_salle():
 
 @app.route('/type-salle/delete', methods=['GET'])
 def delete_type_salle():
-    return "delete"
+    print(''' Suppression d'une Salle ''')
+    id = request.args.get("id")
+    message = f"Suppression du type de salle dont l\'Identifiant est : {str(id)}"
+    print(message)
+    flash(message, 'alert-danger')
+    return redirect("/type-salle/show")
 
 @app.route('/type-salle/edit', methods=['GET'])
 def edit_type_salle():
@@ -93,7 +102,7 @@ def valid_edit_type_salle():
 # =====================
 @app.route('/salle-cours/show', methods=['GET'])
 def show_salle_cours():
-    return render_template('salle_cours/show_salle_cours.html')
+    return render_template('salle_cours/show_salle_cours.html', salleCours = salleCours)
 
 @app.route('/salle-cours/add', methods=['GET'])
 def add_salle_cours():
@@ -105,7 +114,12 @@ def valid_add_salle_cours():
 
 @app.route('/salle-cours/delete', methods=['GET'])
 def delete_salle_cours():
-    return "deleted"
+    print(''' Suppression d'une Salle ''')
+    id = request.args.get("id")
+    message = f"Suppression de la salle dont l\'Identifiant est : {str(id)}"
+    print(message)
+    flash(message, 'alert-danger')
+    return redirect("/salle-cours/show")
 
 @app.route('/salle-cours/edit', methods=['GET'])
 def edit_salle_cours():
@@ -120,5 +134,5 @@ def filtre_salle_cours():
     return render_template('salle_cours/front_salle_cours_filtre_show.html')
 
 
-if __name__ == '__main__': # Permet de lancer l'application à travers l'instance de app
+if __name__ == '__main__': # Permet de lancer l'application à travers l'instance de app que si celle-ci existe ('if' est nécessaire)
     app.run()

@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}
+    <title>Type de Salles</title>
+{% endblock %}
+
+{% block body %}
+
+        <h1>Page Type de Salle</h1>
+    <div class="container">
+
+        <table class="table table-hover tableau2 table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom_Salle</th>
+                <th scope="col">Type_Salle_ID</th>
+                <th scope="col">Surface</th>
+                <th scope="col">Nb_Max_Etudiants</th>
+                <th scope="col">Nb_Machine</th>
+                <th scope="col">Image</th>
+                <th scope="col">Opérations</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!-- Une boucle qui créer un tableau capable de se rafraichir si une valeur est ajouté ou supprimé -->
+            {% for salle in salleCours %}
+            <tr>
+                <th>{{ salle.id }}</th>
+                <td>{{ salle.nomSalle }}</td>
+                <td>{{ salle.typeSalle_id }}</td>
+                <td>{{ salle.surface }}</td>
+                <td>{{ salle.nbMaxEtudiants }}</td>
+                <td>{{ salle.nbMachines }}</td>
+                <td>Coming soon!</td>
+                <td>
+                    <form action="">
+                        <a href="/salle-cours/edit?id={{ salle.id }}" class="btn btn-warning rounded-3 btn-anim"> Editer </a>
+                        <a href="/salle-cours/delete?id={{ salle.id }}" class="btn btn-danger rounded-3 btn-anim"> Supprimer </a>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

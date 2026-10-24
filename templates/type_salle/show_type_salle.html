@@ -1,7 +1,39 @@
 {% extends "layout.html" %}
 
 {% block title %}
+    <title>Salles de Cours</title>
+{% endblock %}
 
-    <title>Gestion des salles</title>
+{% block body %}
+
+    <h1>Page Type de Salle</h1>
+    <div class="container">
+
+        <table class="table table-hover tableau2 table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom_Type</th>
+                <th scope="col">Type_Cours</th>
+                <th scope="col">Opérations</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!-- Une boucle qui créer un tableau capable de se rafraichir si une valeur est ajouté ou supprimé -->
+            {% for type in typeSalle %}
+            <tr>
+                <th>{{ type.id }}</th>
+                <td>{{ type.nomTypeSalle }}</td>
+                <td>{{ type.typeCours}}</td>
+                <td>
+                    <a href="/type-salle/edit?id={{ type.id }}" class="btn btn-warning rounded-3 btn-anim"> Editer </a>
+                    <a href="/type-salle/delete?id={{ type.id }}" class="btn btn-danger rounded-3 btn-anim"> Supprimer </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
