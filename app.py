@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect, flash
 
 app = Flask(__name__)
+app.secret_key = 'une cle(token) : grain de sel(any random string)'
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 typeSalle = [
     {'id': 1, 'nomTypeSalle': 'td', 'typeCours': 'TD'},
@@ -57,11 +59,66 @@ salleCours = [
 ]
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 
-@app.route('/type-salle/show')
+# =====================
+# La partie Type-Salle
+# =====================
+@app.route('/type-salle/show', methods=['GET'])
 def show_type_salle():
     return render_template('type_salle/show_type_salle.html', etudiants=typeSalle)
 
-if __name__ == '__main__':
+@app.route('/type-salle/add', methods=['GET'])
+def add_type_salle():
+    return render_template('type_salle/add_type_salle.html')
+
+@app.route('/type-salle/add', methods=['POST'])
+def valid_add_type_salle():
+    return redirect('type_salle/valid_add_type_salle.html')
+
+@app.route('/type-salle/delete', methods=['GET'])
+def delete_type_salle():
+    return "delete"
+
+@app.route('/type-salle/edit', methods=['GET'])
+def edit_type_salle():
+    return render_template('type_salle/edit_type_salle.html')
+
+@app.route('/type-salle/edit', methods=['POST'])
+def valid_edit_type_salle():
+    return redirect('type_salle/valid_edit_type_salle.html')
+
+# =====================
+# La partie Salle-Cours
+# =====================
+@app.route('/salle-cours/show', methods=['GET'])
+def show_salle_cours():
+    return render_template('salle_cours/show_salle_cours.html')
+
+@app.route('/salle-cours/add', methods=['GET'])
+def add_salle_cours():
+    return render_template('salle_cours/add_salle_cours.html')
+
+@app.route('/salle-cours/add', methods=['POST'])
+def valid_add_salle_cours():
+    return redirect('salle_cours/valid_add_salle_cours.html')
+
+@app.route('/salle-cours/delete', methods=['GET'])
+def delete_salle_cours():
+    return "deleted"
+
+@app.route('/salle-cours/edit', methods=['GET'])
+def edit_salle_cours():
+    return render_template('salle_cours/edit_salle_cours.html')
+
+@app.route('/salle-cours/edit', methods=['POST'])
+def valid_edit_salle_cours():
+    return redirect('salle_cours/valid_edit_salle_cours.html')
+
+@app.route('/salle-cours/filtre', methods=['GET'])
+def filtre_salle_cours():
+    return render_template('salle_cours/front_salle_cours_filtre_show.html')
+
+
+if __name__ == '__main__': # Permet de lancer l'application à travers l'instance de app
     app.run()
