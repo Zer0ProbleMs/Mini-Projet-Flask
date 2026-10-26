@@ -6,7 +6,7 @@
 
 {% block body %}
 
-        <h1>Page Type de Salle</h1>
+    <h1>Page Type de Salle</h1>
     <div class="container">
 
         <table class="table table-hover tableau2 table-striped">
@@ -26,21 +26,19 @@
             <tbody>
             <!-- Une boucle qui créer un tableau capable de se rafraichir si une valeur est ajouté ou supprimé -->
             {% for salle in salleCours %}
-            <tr>
-                <th>{{ salle.id }}</th>
-                <td>{{ salle.nomSalle }}</td>
-                <td>{{ salle.typeSalle_id }}</td>
-                <td>{{ salle.surface }}</td>
-                <td>{{ salle.nbMaxEtudiants }}</td>
-                <td>{{ salle.nbMachines }}</td>
-                <td>Coming soon!</td>
-                <td>
-                    <form action="">
+                <tr>
+                    <th>{{ salle.id }}</th>
+                    <td>{{ salle.nomSalle }}</td>
+                    <td class="text-danger">{{ salle.typeSalle_id }}</td>
+                    <td>{{ salle.surface }}</td>
+                    <td>{{ salle.nbMaxEtudiants }}</td>
+                    <td>{{ salle.nbMachines }}</td>
+                    <td><img src="/static/images/{{ salle.photo }}" alt="Photo Manquante!" width="178px" class="btn-anim rounded"></td>
+                    <td>
                         <a href="/salle-cours/edit?id={{ salle.id }}" class="btn btn-warning rounded-3 btn-anim"> Editer </a>
                         <a href="/salle-cours/delete?id={{ salle.id }}" class="btn btn-danger rounded-3 btn-anim"> Supprimer </a>
-                    </form>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>

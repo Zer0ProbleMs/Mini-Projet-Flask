@@ -123,11 +123,34 @@ def delete_salle_cours():
 
 @app.route('/salle-cours/edit', methods=['GET'])
 def edit_salle_cours():
-    return render_template('salle_cours/edit_salle_cours.html')
+    id = request.args.get("id")
+    if id.isnumeric():
+        indice = int(id)
+        salle = salleCours[indice - 1]
+    else:
+        salle = []
+    return render_template('salle_cours/edit_salle_cours.html', salleCours = salle, typeSalle = typeSalle)
 
 @app.route('/salle-cours/edit', methods=['POST'])
 def valid_edit_salle_cours():
-    return redirect('salle_cours/valid_edit_salle_cours.html')
+    id = request.form.get("id")
+    nom = request.form.get("nom")
+    typeSalleID = request.form.get("typeSalleID")
+    nbEtudiants = request.form.get("nbEtudiants")
+    surface = request.form.get("surface")
+    nbPrises = request.form.get("nbPrises")
+    nbMachines = request.form.get("nbMachines")
+    photo = request.form.get("photo")
+    message = (f"L'identifiant de la salle choisi était : {id} | "
+               f"Le nouveau nom choisi est : {nom} | "
+               f"Le nouvel identifiant du type choisi est : {typeSalleID} | "
+               f"Le nombre d'étudiants maximum pouvant être dans la salle est : {nbEtudiants} | "
+               f"La surface de la salle est : {surface} | "
+               f"Le nombre de prises dans la salle est : {nbPrises} | "
+               f"Le nombre de machiines dans la salle est : {nbMachines} | "
+               f"Le nom du fichier photo choisi est : {photo} | ")
+    flash(message, 'alert-warning')
+    return redirect('/salle-cours/show')
 
 @app.route('/salle-cours/filtre', methods=['GET'])
 def filtre_salle_cours():

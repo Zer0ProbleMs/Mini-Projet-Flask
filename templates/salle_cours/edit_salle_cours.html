@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}
+    <title>Page Edit Salle Cours</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Page de modification de Salle</h1>
+
+    <div class="container-fluid">
+        <h2>Vous avez sélectionné la {{ salleCours.nomSalle }}</h2>
+    </div>
+
+    <form action="/salle-cours/edit" method="post">
+        <fieldset>
+            <input type="hidden" name="id" value="{{ salleCours.id }}">
+
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom de la salle de cours<b>*</b></label>
+                <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez un nom de salle de cours..." value="{{ salleCours.nomSalle }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="typeSalleID" class="form-label"> Type de Salle </label>
+                <select class="form-select" name="typeSalleID" id="typeSalleID">
+                    <option value="1">Salle de TD</option>
+                    <option value="2">Salle de Amphi</option>
+                    <option value="3">Salle de TP Machine</option>
+                    <option value="4">Salle de TP Réseau</option>
+                    <option value="5">Salle des Profs</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="nbEtudiants" class="form-label">Nombre d'Etudiants Maximum</label>
+                <input type="number" class="form-control" id="nbEtudiants" name="nbEtudiants" placeholder="Entrez le nombre maximum d'étudiants..." value="{{ salleCours.nbMaxEtudiants }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="surface" class="form-label">Surface de la Salle en m²</label>
+                <input type="number" class="form-control" id="surface" name="surface" placeholder="Entrez la surface de la salle..." value="{{ salleCours.surface }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="nbPrises" class="form-label">Nombre de Prises de Courant Maximum</label>
+                <input type="number" class="form-control" id="nbPrises" name="nbPrises" placeholder="Entrez le nombre de prises de courant..." value="{{ salleCours.nbPrisesCourant }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="nbMachines" class="form-label">Nombre de Machines</label>
+                <input type="number" class="form-control" id="nbMachines" name="nbMachines" placeholder="Entrez le nombre de machines..." value="{{ salleCours.nbMachines }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Nom du Fichier Photo</label>
+                <input type="text" class="form-control" id="photo" name="photo" placeholder="Entrez le nom du fichier de la photo..." value="{{ salleCours.photo }}">
+            </div>
+
+            <button class="btn btn-outline-success" type="submit">Enregistrer</button>
+
+            <div class="mb-3">
+                <label for="" class="form-label"></label>
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}
