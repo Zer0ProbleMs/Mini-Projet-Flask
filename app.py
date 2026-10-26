@@ -193,8 +193,34 @@ def valid_edit_salle_cours():
 
 @app.route('/salle-cours/filtre', methods=['GET'])
 def filtre_salle_cours():
-    return render_template('salle_cours/front_salle_cours_filtre_show.html')
+    return render_template('salle_cours/front_salle_cours_filtre_show.html',
+                           salleCours=salleCours, typeSalle=typeSalle)
 
+@app.route('/salle-cours/filtre', methods=['POST'])
+def valid_filtre_salle_cours():
+    nomSalle = request.form.get('nomSalle', None)
+    surfaceMin = request.form.get('surfaceMin', None)
+    surfaceMax = request.form.get('surfaceMax', None)
+    typeSalle_id = request.form.getlist('typeSalle_id')
+
+    if nomSalle and nomSalle != '':
+        flash('Filtre sur le nom de la salle : ' + nomSalle, 'alert-success')
+
+    if surfaceMin or surfaceMax:
+        mini = str(surfaceMin).replace(',', '.')
+        maxi = str(surfaceMax).replace(',', '.')
+        if mini.replace('.', '', 1).isdigit() and maxi.replace('.', '', 1).isdigit():
+            if float(mini) < float(maxi):
+                flash('Filtre sur la surface entre ' + mini + ' et ' + maxi, 'alert-success')
+            else:
+                flash('La surface min doit être inférieure à la surface max', 'alert-warning')
+        else:
+            flash('Surface min et max doivent être des numériques positifs', 'alert-warning')
+
+    if typeSalle_id:
+        flash('Types de salle cochés (id) : ' + ', '.join(typeSalle_id), 'alert-success')
+
+    return redirect('/salle-cours/filtre')
 
 if __name__ == '__main__': # Permet de lancer l'application à travers l'instance de app que si celle-ci existe ('if' est nécessaire)
     app.run()

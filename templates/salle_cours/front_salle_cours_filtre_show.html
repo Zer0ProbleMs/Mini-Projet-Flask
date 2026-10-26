@@ -1,11 +1,52 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    <title>Type de Salles</title>
+    <title>Filtre des salles</title>
 {% endblock %}
 
 {% block body %}
+<h1>Filtrer les salles</h1>
 
-    <h1>Page Filtre</h1>
+<form action="/salle-cours/filtre" method="post" class="mb-4">
+    <div class="row">
+        <div class="col-4">
+            <label for="nomSalle" class="form-label">Nom de la salle</label>
+            <input type="text" class="form-control" id="nomSalle" name="nomSalle" placeholder="Saisir un mot clé">
+        </div>
 
+        <div class="col-4">
+            <p class="form-label">Types de salle</p>
+            {% for unType in typeSalle %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="typeSalle_id"
+                       value="{{ unType.id }}" id="typeSalle{{ unType.id }}">
+                <label class="form-check-label" for="typeSalle{{ unType.id }}">{{ unType.nomTypeSalle }}</label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-4">
+            <label for="surfaceMin" class="form-label">Surface min</label>
+            <input type="number" class="form-control" id="surfaceMin" name="surfaceMin">
+            <label for="surfaceMax" class="form-label mt-2">Surface max</label>
+            <input type="number" class="form-control" id="surfaceMax" name="surfaceMax">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Filtrer</button>
+</form>
+
+<div class="row">
+    {% for salle in salleCours %}
+    <div class="col-4">
+        <div class="card mb-3">
+            <img src="{{ url_for('static', filename='images/' + salle.photo) }}" class="card-img-top" alt="{{ salle.nomSalle }}">
+            <div class="card-body">
+                <h2 class="card-title h5">{{ salle.nomSalle }}</h2>
+                <p class="card-text">{{ typeSalle[salle.typeSalle_id - 1].nomTypeSalle }}</p>
+                <a href="/salle-cours/show" class="btn btn-success">ouvrir</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
