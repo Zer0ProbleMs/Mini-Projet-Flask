@@ -8,7 +8,7 @@
 
     <h1>Page Type de Salle</h1>
     <div class="container">
-
+        <a href="/type-salle/add" class="btn btn-success rounded-3 btn-anim">Ajouter un type de salle</a>
         <table class="table table-hover tableau2 table-striped">
             <thead>
             <tr>
@@ -24,7 +24,7 @@
             {% for type in typeSalle %}
             <tr>
                 <th>{{ type.id }}</th>
-                <td>{{ type.nomTypeSalle }}</td>
+                <td class="text-danger">{{ type.nomTypeSalle }}</td>
                 <td>{{ type.typeCours}}</td>
                 <td>
                     <a href="/type-salle/edit?id={{ type.id }}" class="btn btn-warning rounded-3 btn-anim"> Editer </a>

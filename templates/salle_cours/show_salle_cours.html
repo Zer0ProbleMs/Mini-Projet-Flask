@@ -8,7 +8,8 @@
 
     <h1>Page Type de Salle</h1>
     <div class="container">
-
+        <a href="/salle-cours/add" class="btn btn-success rounded-3 btn-anim">Ajouter une Salle</a>
+        <hr>
         <table class="table table-hover tableau2 table-striped">
             <thead>
             <tr>
@@ -33,7 +34,7 @@
                     <td>{{ salle.surface }}</td>
                     <td>{{ salle.nbMaxEtudiants }}</td>
                     <td>{{ salle.nbMachines }}</td>
-                    <td><img src="/static/images/{{ salle.photo }}" alt="Photo Manquante!" width="178px" class="btn-anim rounded"></td>
+                    <td><img src="/static/images/{{ salle.photo }}" alt="Photo Manquante!" width="178" class="btn-anim rounded"></td>
                     <td>
                         <a href="/salle-cours/edit?id={{ salle.id }}" class="btn btn-warning rounded-3 btn-anim"> Editer </a>
                         <a href="/salle-cours/delete?id={{ salle.id }}" class="btn btn-danger rounded-3 btn-anim"> Supprimer </a>

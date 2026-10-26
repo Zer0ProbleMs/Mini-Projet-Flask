@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}
+    <title>Ajout d'un type de salle</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Page de modification de Salle</h1>
+
+    <div class="container-fluid">
+        <h2>Création d'un nouveau type de salle</h2>
+    </div>
+
+    <form action="/type-salle/add" method="post">
+        <fieldset>
+            <input type="hidden" name="id" value="{{ (typeSalle | map(attribute='id') | max) + 1 }}">
+
+            <div class="mb-3">
+                <label for="nomType" class="form-label">Nom du type de cours<b>*</b></label>
+                <input type="text" class="form-control" id="nomType" name="nomType" placeholder="Entrez le nom du type de cours..." value="{{ typeSalle.nomTypeSalle }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="coursType" class="form-label">Type de cours</label>
+                <select class="form-select" name="coursType" id="coursType">
+                    <option value="TD">Travaux Dirigés</option>
+                    <option value="TP">Travaux Pratiques</option>
+                    <option value="CM">Cours Magistraux</option>
+                    <option value="None">Aucun</option>
+                </select>
+            </div>
+
+            <button class="btn btn-outline-success" type="submit">Ajouter</button>
+        </fieldset>
+    </form>
+
+{% endblock %}
