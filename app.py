@@ -60,10 +60,8 @@ salleCours = [
 
 
 @app.route('/', methods=['GET'])
-
-@app.route('/accueil', methods=['GET'])
-def accueil():
-    return render_template('index.html', salleCours = salleCours, typeSalle = typeSalle)
+def show_layout():
+    return render_template('layout.html', salleCours = salleCours, typeSalle = typeSalle)
 
 # =====================
 # La partie Type-Salle
@@ -79,12 +77,12 @@ def add_type_salle():
 @app.route('/type-salle/add', methods=['POST'])
 def valid_add_type_salle():
     id = request.form.get('id')
-    nomType = request.form.get('nomTypeSalle')
-    coursType = request.form.get('typeCours')
+    nomTypeSalle = request.form.get('nomTypeSalle')
+    typeCours = request.form.get('typeCours')
     message = (f"Vous venez d'ajouter un nouveau type de salle ! | "
                f"L'identifiant de la salle ajouté est : {id} | "
-               f"Le nom du type choisi est : {nomType} | "
-               f"Le cours choisi est : {coursType} | ")
+               f"Le nom du type choisi est : {nomTypeSalle} | "
+               f"Le cours choisi est : {typeCours} | ")
     flash(message, 'alert-success')
     return redirect('/type-salle/show')
 
@@ -109,12 +107,12 @@ def edit_type_salle():
 @app.route('/type-salle/edit', methods=['POST'])
 def valid_edit_type_salle():
     id = request.form.get("id")
-    nomType = request.form.get("nomTypeSalle")
-    coursType = request.form.get("typeCours")
+    nomTypeSalle = request.form.get("nomTypeSalle")
+    typeCours = request.form.get("typeCours")
     message = (f"Vous venez de modifier les informations d'une salle ! | "
                f"L'identifiant de la salle choisi était : {id} | "
-               f"Le nouveau nom choisi est : {nomType} | "
-               f"Le nouvel identifiant du type choisi est : {coursType} | ")
+               f"Le nouveau nom choisi est : {nomTypeSalle} | "
+               f"Le nouvel identifiant du type choisi est : {typeCours} | ")
     flash(message, 'alert-warning')
     return redirect('/type-salle/show')
 

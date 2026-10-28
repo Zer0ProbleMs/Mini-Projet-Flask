@@ -23,77 +23,59 @@ input:required:placeholder-shown{
     opacity: 0.5;
 }
 
-
-/*
-
-nav a {
-   background-color:yellowgreen;
-}
-
-a:hover {
-    background-color:pink;
-}
-
 body {
-    background-color: yellowgreen;
+    background-color: #f5f7fa;
 }
 
-nav.navigation{
-    width:100%;
-    height: 70px;
-    background-color : khaki;
+h1 {
+    margin: 1.5rem 0 1rem;
+    font-size: 2rem;
+    color: #1f4e3d;
 }
 
-a {
-    width:150px;
-    height: 30px;
-    background-color:gold;
-    border: 1px green groove;
-    text-align:center;
-    padding: 10px;
-    margin : 10px;
-    border-radius: 15px 50px 30px 5px;
-    display:block;
-    float:left;
+nav.menu {
+    padding: 0.8rem 1.5rem;
+    background-color: #1f4e3d;
 }
 
-a:hover {
-    background-color:pink;
+nav.menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-table{
-    width:40%;
-    border:solid  5px;
-    border-color: blue;
-    border-collapse:collapse;
-    text-align:center;
-    margin-left:auto;
-    margin-right:auto;
+nav.menu a:hover {
+    text-decoration: underline;
 }
 
-table td {
-    border:solid green 2px;
+table.table tbody tr:hover {
+    background-color: #e8f3ee;
 }
 
-table caption{
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom:5px;
-    color:olive;
+td.cle-etrangere {
+    color: red;
+    font-weight: bold;
 }
 
-table thead{
-    color:purple;
-    background-color:LightBlue;
+select.form-select {
+    background-color: #fff3a8;
 }
 
-table thead th{
-    border:solid rgb(0, 255, 60) 2px;
+input:invalid {
+    background-color: #d9d9d9;
 }
 
-table tfoot{
-    color:purple;
-    background-color:green;
+.card {
+    border-radius: 12px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-*/
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.alert {
+    margin: 1rem auto;
+    max-width: 960px;
+}
