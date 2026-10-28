@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    <title>Page Edit Salle Cours</title>
+    <title>Modification d'une salle de cours</title>
 {% endblock %}
 
 {% block body %}
-    <h1>Page de modification de Salle</h1>
+    <h1>Modification d'une salle de cours</h1>
 
     <div class="container-fluid">
-        <h2>Vous avez sélectionné la {{ salleCours.nomSalle }}</h2>
+        <h2>Vous avez sélectionné la salle dont l'identifiant est : {{ salleCours.id }}</h2>
     </div>
 
     <form action="/salle-cours/edit" method="post">
@@ -16,44 +16,53 @@
             <input type="hidden" name="id" value="{{ salleCours.id }}">
 
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom de la salle de cours<b>*</b></label>
-                <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez un nom de salle de cours..." value="{{ salleCours.nomSalle }}" required>
+                <label for="nomSalle" class="form-label">Nom de la salle de cours<b>*</b></label>
+                <input type="text" class="form-control" id="nomSalle" name="nomSalle" value="{{ salleCours.nomSalle }}" placeholder="Entrez un nom de salle de cours..." required>
             </div>
 
             <div class="mb-3">
-                <label for="typeSalleID" class="form-label"> Type de Salle </label>
-                <select class="form-select" name="typeSalleID" id="typeSalleID">
-                    <option value="1">Salle de TD</option>
-                    <option value="2">Salle de Amphi</option>
-                    <option value="3">Salle de TP Machine</option>
-                    <option value="4">Salle de TP Réseau</option>
-                    <option value="5">Salle des Profs</option>
+                <label for="typeSalle_id" class="form-label">Type de salle<b>*</b></label>
+                <select class="form-select" name="typeSalle_id" id="typeSalle_id" required>
+                    <option value="">Sélectionner un type de salle</option>
+                    {% for unType in typeSalle %}
+                        <option value="{{ unType.id }}" {% if unType.id == salleCours.typeSalle_id %}selected{% endif %}>{{ unType.nomTypeSalle }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="nbEtudiants" class="form-label">Nombre d'Etudiants Maximum</label>
-                <input type="number" class="form-control" id="nbEtudiants" name="nbEtudiants" placeholder="Entrez le nombre maximum d'étudiants..." value="{{ salleCours.nbMaxEtudiants }}">
+                <label for="etage" class="form-label">Étage</label>
+                <input type="number" class="form-control" id="etage" name="etage" value="{{ salleCours.etage }}">
             </div>
 
             <div class="mb-3">
-                <label for="surface" class="form-label">Surface de la Salle en m²</label>
-                <input type="number" class="form-control" id="surface" name="surface" placeholder="Entrez la surface de la salle..." value="{{ salleCours.surface }}">
+                <label for="batiment" class="form-label">Bâtiment</label>
+                <input type="text" class="form-control" id="batiment" name="batiment" value="{{ salleCours.batiment }}">
             </div>
 
             <div class="mb-3">
-                <label for="nbPrises" class="form-label">Nombre de Prises de Courant Maximum</label>
-                <input type="number" class="form-control" id="nbPrises" name="nbPrises" placeholder="Entrez le nombre de prises de courant..." value="{{ salleCours.nbPrisesCourant }}">
+                <label for="nbMaxEtudiants" class="form-label">Nombre d'étudiants maximum</label>
+                <input type="number" class="form-control" id="nbMaxEtudiants" name="nbMaxEtudiants" value="{{ salleCours.nbMaxEtudiants }}">
             </div>
 
             <div class="mb-3">
-                <label for="nbMachines" class="form-label">Nombre de Machines</label>
-                <input type="number" class="form-control" id="nbMachines" name="nbMachines" placeholder="Entrez le nombre de machines..." value="{{ salleCours.nbMachines }}">
+                <label for="surface" class="form-label">Surface de la salle en m²</label>
+                <input type="number" class="form-control" id="surface" name="surface" value="{{ salleCours.surface }}">
             </div>
 
             <div class="mb-3">
-                <label for="photo" class="form-label">Nom du Fichier Photo</label>
-                <input type="text" class="form-control" id="photo" name="photo" placeholder="Entrez le nom du fichier de la photo..." value="{{ salleCours.photo }}">
+                <label for="nbPrisesCourant" class="form-label">Nombre de prises de courant</label>
+                <input type="number" class="form-control" id="nbPrisesCourant" name="nbPrisesCourant" value="{{ salleCours.nbPrisesCourant }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="nbMachines" class="form-label">Nombre de machines</label>
+                <input type="number" class="form-control" id="nbMachines" name="nbMachines" value="{{ salleCours.nbMachines }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Nom du fichier photo</label>
+                <input type="text" class="form-control" id="photo" name="photo" value="{{ salleCours.photo }}">
             </div>
 
             <button class="btn btn-outline-success" type="submit">Enregistrer</button>

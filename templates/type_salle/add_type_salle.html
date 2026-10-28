@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Page de modification de Salle</h1>
+    <h1>Ajout d'un type de salle</h1>
 
     <div class="container-fluid">
         <h2>Création d'un nouveau type de salle</h2>
@@ -16,13 +16,13 @@
             <input type="hidden" name="id" value="{{ (typeSalle | map(attribute='id') | max) + 1 }}">
 
             <div class="mb-3">
-                <label for="nomType" class="form-label">Nom du type de cours<b>*</b></label>
-                <input type="text" class="form-control" id="nomType" name="nomType" placeholder="Entrez le nom du type de cours..." value="{{ typeSalle.nomTypeSalle }}" required>
+                <label for="nomTypeSalle" class="form-label">Nom du type de salle<b>*</b></label>
+                <input type="text" class="form-control" id="nomTypeSalle" name="nomTypeSalle" placeholder="Entrez le nom du type de salle..." required>
             </div>
 
             <div class="mb-3">
-                <label for="coursType" class="form-label">Type de cours</label>
-                <select class="form-select" name="coursType" id="coursType">
+                <label for="typeCours" class="form-label">Type de cours</label>
+                <select class="form-select" name="typeCours" id="typeCours">
                     <option value="TD">Travaux Dirigés</option>
                     <option value="TP">Travaux Pratiques</option>
                     <option value="CM">Cours Magistraux</option>

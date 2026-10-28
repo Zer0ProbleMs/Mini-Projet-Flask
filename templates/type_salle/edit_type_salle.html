@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    <title>Page Edit Salle Cours</title>
+    <title>Modification d'un type de salle</title>
 {% endblock %}
 
 {% block body %}
-    <h1>Page de modification de Salle</h1>
+    <h1>Modification d'un type de salle</h1>
 
     <div class="container-fluid">
         <h2>Vous avez sélectionné le type dont l'identifiant est : {{ typeSalle.id }}</h2>
@@ -16,17 +16,17 @@
             <input type="hidden" name="id" value="{{ typeSalle.id }}">
 
             <div class="mb-3">
-                <label for="nomType" class="form-label">Nom du type de cours<b>*</b></label>
-                <input type="text" class="form-control" id="nomType" name="nomType" placeholder="Entrez le nom du type de cours..." value="{{ typeSalle.nomTypeSalle }}" required>
+                <label for="nomTypeSalle" class="form-label">Nom du type de salle<b>*</b></label>
+                <input type="text" class="form-control" id="nomTypeSalle" name="nomTypeSalle" placeholder="Entrez le nom du type de salle..." value="{{ typeSalle.nomTypeSalle }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="coursType" class="form-label">Type de cours</label>
-                <select class="form-select" name="coursType" id="coursType">
-                    <option value="TD">Travaux Dirigés</option>
-                    <option value="TP">Travaux Pratiques</option>
-                    <option value="CM">Cours Magistraux</option>
-                    <option value="None">Aucun</option>
+                <label for="typeCours" class="form-label">Type de cours</label>
+                <select class="form-select" name="typeCours" id="typeCours">
+                    <option value="TD" {% if typeSalle.typeCours == 'TD' %}selected{% endif %}>Travaux Dirigés</option>
+                    <option value="TP" {% if typeSalle.typeCours == 'TP' %}selected{% endif %}>Travaux Pratiques</option>
+                    <option value="CM" {% if typeSalle.typeCours == 'CM' %}selected{% endif %}>Cours Magistraux</option>
+                    <option value="None" {% if typeSalle.typeCours is none %}selected{% endif %}>Aucun</option>
                 </select>
             </div>
 

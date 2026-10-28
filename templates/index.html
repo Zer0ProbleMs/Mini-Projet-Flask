@@ -5,5 +5,54 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="align-items-center">Page d'Accueil</h1>
+    <div class="bg-light border rounded-3 p-5 my-4 text-center">
+        <h1 class="display-5 fw-bold">Trouvez la bonne salle de cours</h1>
+        <p class="lead col-lg-8 mx-auto">
+            Consultez les salles et leurs caractéristiques, filtrez-les selon vos besoins,
+            et gérez vos propres salles et types de salle.
+        </p>
+        <a href="/salle-cours/filtre" class="btn btn-success btn-lg me-2">Filtrer les salles</a>
+        <a href="/salle-cours/show" class="btn btn-outline-secondary btn-lg">Voir toutes les salles</a>
+    </div>
+
+    <div class="row text-center mb-4">
+        <div class="col-6">
+            <p class="display-6 fw-bold mb-0">{{ salleCours | length }}</p>
+            <p class="text-muted">salles</p>
+        </div>
+        <div class="col-6">
+            <p class="display-6 fw-bold mb-0">{{ typeSalle | length }}</p>
+            <p class="text-muted">types de salle</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4">Salles de cours</h2>
+                    <p class="card-text">Liste complète des salles avec étage, surface, nombre de prises et de machines.</p>
+                    <a href="/salle-cours/show" class="btn btn-success">Consulter</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4">Types de salle</h2>
+                    <p class="card-text">TD, TP, amphis... Ajoutez ou modifiez les types de salle disponibles.</p>
+                    <a href="/type-salle/show" class="btn btn-success">Consulter</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4">Filtres</h2>
+                    <p class="card-text">Recherchez une salle par nom, par type ou par surface.</p>
+                    <a href="/salle-cours/filtre" class="btn btn-success">Filtrer</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
